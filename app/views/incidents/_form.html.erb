@@ -15,6 +15,23 @@
     <%= f.label :comment %><br>
     <%= f.text_field :comment %>
   </div>
+
+
+  <div class="field">
+    <%= f.label :tilte %><br>
+    <%= f.text_field :tilte %>
+  </div>
+
+  <div class="field">
+    <%= f.label :priority %><br>
+    <%= select("post", "categorie_id", priorities_options {|p| [ p ] }, {include_blank: 'Select priority'}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

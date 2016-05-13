@@ -5,5 +5,20 @@
   <%= @incident.comment %>
 </p>
 
+<p>
+  <strong>Priority:</strong>
+  <%= @incident.priority %>
+</p>
+
+<p>
+  <strong>Tilte:</strong>
+  <%= @incident.tilte %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @incident.content %>
+</p>
+
 <%= link_to 'Edit', edit_incident_path(@incident) %> |
 <%= link_to 'Back', incidents_path %>

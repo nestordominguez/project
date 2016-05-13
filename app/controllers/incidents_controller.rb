@@ -1,5 +1,6 @@
 class IncidentsController < ApplicationController
   before_action :set_incident, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /incidents
   # GET /incidents.json
@@ -63,6 +64,19 @@ class IncidentsController < ApplicationController
     end
   end
 
+  def update_user
+    @user = User.find(current_user.id)
+    @user.showall =  !@user.showall
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to incidents_path }
+        format.json { render :index, status: :ok}
+      else
+        format.html { render :edit }
+        format.json { render json: @incident.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_incident

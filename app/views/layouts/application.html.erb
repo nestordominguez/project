@@ -10,6 +10,7 @@
 <%if user_signed_in?%>
 <%= link_to 'Cerrar Sesión', destroy_user_session_path, :method => :delete %>
 <%= link_to 'incidents', incidents_path %>
+<%= link_to 'companies', companies_path %>
 <% else%>
 <a href="/users/sign_in">sign in</a>
 <%end%>

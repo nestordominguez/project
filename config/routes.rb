@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :companies
-  resources :categories
+  resources :companies, :categories
+  resources :admin_users, only: [:index, :show, :edit, :update]
   resources :incidents do
   	collection do
   		put :update_user

@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User Email</th>
+      <th>Acceso</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_users.each do |admin_user| %>
+      <tr>
+        <td><%= admin_user.email %></td>
+        <td><%= role(admin_user)%></td>
+        <td><%= link_to 'Show', admin_user_path(admin_user) %></td>
+        <td><%= link_to 'Edit', edit_admin_user_path(admin_user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

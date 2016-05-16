@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<%if notice%>
+  <p id="notice" class="alert alert-success"><%= notice %></p>
+<%end%>
 
 <h1 class="col-md-12">Listing Companies</h1>
 <div class="responsive-class">

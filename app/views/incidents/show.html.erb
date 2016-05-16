@@ -1,19 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<p class="col-md-4">
   <strong>Priority:</strong>
   <%= @incident.priority %>
 </p>
 
-<p>
+<p class="col-md-4">
   <strong>Title:</strong>
   <%= @incident.title %>
 </p>
 
-<p>
+<p class="col-md-4">
   <strong>Content:</strong>
   <%= @incident.content %>
 </p>
+<div class="col-sm-12">
+	<%= link_to 'Edit', edit_incident_path(@incident), class: "col-md-1 links" %>
+	<%= link_to 'Back', incidents_path, class: "col-md-1 links" %>
+</div>
 
-<%= link_to 'Edit', edit_incident_path(@incident) %> |
-<%= link_to 'Back', incidents_path %>

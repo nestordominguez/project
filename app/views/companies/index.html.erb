@@ -1,31 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Companies</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Company Name</th>
-      <th>Address</th>
-      <th>Address Number</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @companies.each do |company| %>
+<h1 class="col-md-12">Listing Companies</h1>
+<div class="responsive-class">
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= company.company_name %></td>
-        <td><%= company.address %></td>
-        <td><%= company.address_num %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Company Name</th>
+        <th>Address</th>
+        <th>Address Number</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @companies.each do |company| %>
+        <tr>
+          <td><%= company.company_name %></td>
+          <td><%= company.address %></td>
+          <td><%= company.address_num %></td>
+          <td><%= link_to 'Show', company, class: "links" %></td>
+          <td><%= link_to 'Edit', edit_company_path(company), class: "links" %></td>
+          <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }, class: "links" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+</div>
 
 <br>
 
-<%= link_to 'New Company', new_company_path %>
+<%= link_to 'New Company', new_company_path, class: "links" %>

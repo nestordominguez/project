@@ -12,15 +12,19 @@
     <div class="navbar-header">
     	<%= link_to 'Home', root_path, class: "navbar-brand" %>
     </div>
-    <ul class="nav navbar-nav">
-		<%if user_signed_in?%>
-		  <li><%= link_to 'incidents', incidents_path%></li>
-		  <li><%= link_to 'companies', companies_path %></li>
-		  <li><%= link_to 'Cerrar Sesión', destroy_user_session_path, :method => :delete %></li> 
-		<% else%>
-		  <li><%= link_to 'sign in', user_session_path %>
-		<%end%>
-    </ul>
+    <%if user_signed_in?%>
+      <ul class="nav navbar-nav">
+  		  <li><%= link_to 'incidents', incidents_path%></li>
+  		  <li><%= link_to 'companies', companies_path %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+  		  <li><%= link_to 'Cerrar Sesión', destroy_user_session_path, :method => :delete %></li> 
+      </ul>
+    <% else%>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Sign in', user_session_path %>
+      </ul>
+    <%end%>
   </div>
 </nav>
 

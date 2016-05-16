@@ -12,6 +12,7 @@ class IncidentsController < ApplicationController
   # GET /incidents/1
   # GET /incidents/1.json
   def show
+    @comments = Comment.all
   end
 
   # GET /incidents/new

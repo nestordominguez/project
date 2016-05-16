@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   private
 
   def admin!
-    #byebug
     redirect_to root_path unless current_user.role == 2
   end
 end

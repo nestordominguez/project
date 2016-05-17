@@ -11,6 +11,12 @@ class AdminUsersController < ApplicationController
   def edit; end
 
   def update
+    case user_params
+    when user_params[:active] == 1
+      user_params[:active] = true
+    when user_params[:active] == 0
+      user_params[:active] = false
+    end
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to admin_user_path, notice: 'User was successfully updated.' }
@@ -28,7 +34,7 @@ class AdminUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :role, :password, :password_confirmation)
+      params.require(:user).permit(:email, :role, :password, :password_confirmation, :active)
     end
 
 end

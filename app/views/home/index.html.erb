@@ -1,2 +1,7 @@
-<h1>Home#index</h1>
+<%if notice%>
+  <p id="notice" class="alert alert-success"><%= notice %></p>
+<%end%>
 
+<%if flash[:error]%>
+  <p id="error" class="alert alert-danger"><%= flash[:error] %></p>
+<%end%>

@@ -29,6 +29,12 @@
         <%= f.password_field :password_confirmation %>
       </div>
     </div>
+    <div class="field form-group form-group-sm">
+      <%= f.label :active, class: "col-sm-2 control-label" %><br>
+      <div class="col-sm-10">
+        <%= f.check_box :active %>
+      </div>
+    </div>
     <div class="actions col-md-offset-10">
       <%= f.submit "Update"%>
     </div>

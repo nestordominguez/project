@@ -16,22 +16,13 @@
     <tbody>
       <% @incidents.each do |incident| %>
         <tr>
-          <% if current_user.showall %>
+          <% if current_user.showall || incident.user_id == current_user.id%>
             <td><%= incident.user.email %></td>
             <td><%= incident.title %></td>
             <td><%= link_to 'Show', incident, class: "links" %></td>
             <td><%= link_to 'Edit', edit_incident_path(incident), class: "links" %></td>
             <td><%= link_to 'Destroy', incident, method: :delete, data: { confirm: 'Are you sure?' }, class: "links" %></td>
             <td><%= link_to 'Comment', new_comment_path(incident), class: "links" %></td>
-          <% else %>
-            <% if incident.user_id == current_user.id %>
-              <td><%= incident.user.email %></td>
-              <td><%= incident.title %></td>
-              <td><%= link_to 'Show', incident, class: "links" %></td>
-              <td><%= link_to 'Edit', edit_incident_path(incident), class: "links" %></td>
-              <td><%= link_to 'Destroy', incident, method: :delete, data: { confirm: 'Are you sure?' }, class: "links" %></td>
-              <td><%= link_to 'Comment', new_comment_path(incident), class: "links" %></td>
-            <%end%>
           <%end%>
         </tr>
       <% end %>

@@ -62,6 +62,15 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def update_admin
+    current_admin.company_id = params[:id]
+    respond_to do |format|
+      if current_admin.save
+        format.html {redirect_to companies_url, notice: 'User was successfully added to company.'}
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company

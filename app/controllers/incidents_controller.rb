@@ -1,6 +1,7 @@
 class IncidentsController < ApplicationController
   before_action :set_incident, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_any!
+  include ApplicationHelper
 
   # GET /incidents
   # GET /incidents.json
@@ -28,7 +29,11 @@ class IncidentsController < ApplicationController
   # POST /incidents.json
   def create
     #@incident = Incident.new(incident_params)
-    @incident = current_user.incidents.build(incident_params)
+    if current_user
+      @incident = current_user.incidents.build(incident_params)
+    else
+      @incident = current_admin.incidents.build(incident_params)
+    end
     
 
     respond_to do |format|
@@ -67,7 +72,11 @@ class IncidentsController < ApplicationController
   end
 
   def update_user
-    @user = User.find(current_user.id)
+    if current_user
+      @user = User.find(current_user.id)
+    else
+      @user = Admin.find(current_admin.id)
+    end
     @user.showall =  !@user.showall
     respond_to do |format|
       if @user.save

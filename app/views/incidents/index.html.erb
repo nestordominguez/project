@@ -14,10 +14,15 @@
     </thead>
 
     <tbody>
+
       <% @incidents.each do |incident| %>
         <tr>
-          <% if current_user.showall || incident.user_id == current_user.id%>
-            <td><%= incident.user.email %></td>
+          <% if user_current.showall || incident.user_id == user_current.id || incident.admin_id == user_current.id%>
+            <%if incident.user%>
+              <td><%= incident.user.email %></td>
+            <%else%>
+              <td><%= incident.admin.email %></td>
+            <%end%>
             <td><%= incident.title %></td>
             <td><%= link_to 'Show', incident, class: "links" %></td>
             <td><%= link_to 'Edit', edit_incident_path(incident), class: "links" %></td>
@@ -31,10 +36,10 @@
 </div>
 
 
-  <%if current_user.showall%>
-    <%= button_to "only show my incidents", {action: "update_user", id: current_user.id, class: "btn btn-primary"}, {method: :put} %>
+  <%if user_current.showall%>
+    <%= button_to "only show my incidents", {action: "update_user", id: user_current.id, class: "btn btn-primary"}, {method: :put} %>
   <%else%>
-    <%= button_to "show all", {action: "update_user", id: current_user.id, class: "btn btn-primary"}, {method: :put} %>
+    <%= button_to "show all", {action: "update_user", id: user_current.id, class: "btn btn-primary"}, {method: :put} %>
   <%end%>
 
 <br>

@@ -19,7 +19,11 @@
   <% @comments.each do |comment| %>
     <%if comment.incident.id == @incident.id%>
       <div class="col-md-offset-2 col-md-10 show-comment">
-        The user <%= comment.user.email %> has comment:<br>
+        <%if comment.user%>
+          The user <%= comment.user.email %> has comment:<br>
+        <%else%>
+          The admin <%= comment.admin.email %> has comment:<br>
+        <%end%>
         <p>
           <%= comment.content %>
         </p>

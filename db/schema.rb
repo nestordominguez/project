@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160517131539) do
+ActiveRecord::Schema.define(version: 20160517150035) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "",   null: false
@@ -27,8 +27,10 @@ ActiveRecord::Schema.define(version: 20160517131539) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.boolean  "showall",                default: true
+    t.integer  "company_id"
   end
 
+  add_index "admins", ["company_id"], name: "index_admins_on_company_id"
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
@@ -38,8 +40,10 @@ ActiveRecord::Schema.define(version: 20160517131539) do
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.integer  "incident_id"
+    t.integer  "admin_id"
   end
 
+  add_index "comments", ["admin_id"], name: "index_comments_on_admin_id"
   add_index "comments", ["incident_id"], name: "index_comments_on_incident_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
@@ -60,8 +64,10 @@ ActiveRecord::Schema.define(version: 20160517131539) do
     t.string   "title"
     t.text     "content"
     t.integer  "company_id"
+    t.integer  "admin_id"
   end
 
+  add_index "incidents", ["admin_id"], name: "index_incidents_on_admin_id"
   add_index "incidents", ["categorie_id"], name: "index_incidents_on_categorie_id"
   add_index "incidents", ["company_id"], name: "index_incidents_on_company_id"
   add_index "incidents", ["user_id"], name: "index_incidents_on_user_id"

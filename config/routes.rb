@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   		put :update_user
   	end
   end
-  devise_for :users, :admins
+  devise_for :admins, controllers: { sessions: 'admins/sessions' }
+  devise_for :users, controllers: { sessions: 'users/sessions' }
+
   root to: 'home#index'
 end

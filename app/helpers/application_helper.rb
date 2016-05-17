@@ -1,5 +1,5 @@
 module ApplicationHelper
-	def current_user
-		current_user ||= current_admin
+	def user_current
+		user = current_user || current_admin
 	end
 end

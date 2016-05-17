@@ -1,0 +1,24 @@
+<%= form_for(@area, :html => {:class => "form-horizontal"}) do |f| %>
+  <% if @area.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(@area.errors.count, "error") %> prohibited this area from being saved:</h2>
+
+      <ul>
+      <% @area.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="col-md-offset-4">
+    <div class="field form-group form-group-sm">
+      <%= f.label :area_name, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :area_name %>
+      </div>
+    </div>
+    <div class="actions col-md-offset-10">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

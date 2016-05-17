@@ -1,7 +1,7 @@
 <legend>Editing Company</legend>
 
 <%= render 'form' %>
-<%if current_admin && !current_admin.company_id%>
+<%if current_admin && current_admin.company_id%>
 	<%= button_to 'Add to company', {action: "update_admin", id: @company.id, class: "btn btn-primary"}, {method: :put} %>
 <%end%>
 <%= link_to 'Show', @company, class: "col-md-1 links" %>

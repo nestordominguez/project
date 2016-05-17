@@ -16,7 +16,10 @@
   <strong>Address Number:</strong>
   <%= @company.address_num %>
 </p>
+
+
 <div class="col-sm-12">
 	<%= link_to 'Edit', edit_company_path(@company), class: "col-md-1 links" %>
 	<%= link_to 'Back', companies_path, class: "col-md-1 links" %>
+	<%= link_to "Create area",  new_area_path, class: "col-md-2 links" %>
 </div>

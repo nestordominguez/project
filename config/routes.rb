@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :comments, :categories
+  resources :comments, :categories, :areas
   resources :admin_users, only: [:index, :show, :edit, :update]
   resources :companies do
     collection do

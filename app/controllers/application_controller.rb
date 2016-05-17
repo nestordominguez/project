@@ -8,4 +8,9 @@ class ApplicationController < ActionController::Base
   def admin!
     redirect_to root_path unless current_user.role == 2
   end
+
+  def authenticate_any!
+    return true if admin_signed_in? || user_signed_in?
+    false
+  end
 end

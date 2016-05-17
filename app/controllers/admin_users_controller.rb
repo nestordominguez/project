@@ -1,9 +1,9 @@
 class AdminUsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :admin!
+  before_action :authenticate_admin!
 
   def index
-    @admin_users = User.all
+    @users = User.all
   end
 
   def show; end
@@ -12,7 +12,7 @@ class AdminUsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @admin_user.update(user_params)
+      if @user.update(user_params)
         format.html { redirect_to admin_user_path, notice: 'User was successfully updated.' }
       else
         format.html { render :edit }
@@ -23,7 +23,7 @@ class AdminUsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @admin_user = User.find(params[:id])
+      @user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -8,9 +8,9 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  def create
-    super
-  end
+  #def create
+   # super
+  #end
 
   # DELETE /resource/sign_out
   # def destroy
@@ -20,9 +20,12 @@ class Users::SessionsController < Devise::SessionsController
   private
 
     def user_active?
-      unless User.find_by(email: params[:user][:email]).active
-        respond_to do |format|
-          format.html { redirect_to root_path, :flash => { :error => "Your account is inactive." }}
+      user = User.find_by(email: params[:user][:email])
+      if user
+        unless user.active
+          respond_to do |format|
+            format.html { redirect_to root_path, :flash => { :error => "Your account is inactive." }}
+          end
         end
       end
     end

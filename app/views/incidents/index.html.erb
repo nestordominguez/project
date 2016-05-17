@@ -12,22 +12,35 @@
         <th colspan="3"></th>
       </tr>
     </thead>
-
     <tbody>
-
       <% @incidents.each do |incident| %>
         <tr>
-          <% if user_current.showall || incident.user_id == user_current.id || incident.admin_id == user_current.id%>
-            <%if incident.user%>
-              <td><%= incident.user.email %></td>
-            <%else%>
-              <td><%= incident.admin.email %></td>
+          <%if current_user%>
+            <% if user_current.showall || incident.user_id == current_user.id%>
+              <%if incident.user%>
+                <td><%= incident.user.email %></td>
+              <%else%>
+                <td><%= incident.admin.email %></td>
+              <%end%>
+              <td><%= incident.title %></td>
+              <td><%= link_to 'Show', incident, class: "links" %></td>
+              <td><%= link_to 'Edit', edit_incident_path(incident), class: "links" %></td>
+              <td><%= link_to 'Destroy', incident, method: :delete, data: { confirm: 'Are you sure?' }, class: "links" %></td>
+              <td><%= link_to 'Comment', new_comment_path(incident), class: "links" %></td>
             <%end%>
-            <td><%= incident.title %></td>
-            <td><%= link_to 'Show', incident, class: "links" %></td>
-            <td><%= link_to 'Edit', edit_incident_path(incident), class: "links" %></td>
-            <td><%= link_to 'Destroy', incident, method: :delete, data: { confirm: 'Are you sure?' }, class: "links" %></td>
-            <td><%= link_to 'Comment', new_comment_path(incident), class: "links" %></td>
+          <%else%>
+            <% if user_current.showall || incident.user_id == current_admin.id%>
+              <%if incident.user%>
+                <td><%= incident.user.email %></td>
+              <%else%>
+                <td><%= incident.admin.email %></td>
+              <%end%>
+              <td><%= incident.title %></td>
+              <td><%= link_to 'Show', incident, class: "links" %></td>
+              <td><%= link_to 'Edit', edit_incident_path(incident), class: "links" %></td>
+              <td><%= link_to 'Destroy', incident, method: :delete, data: { confirm: 'Are you sure?' }, class: "links" %></td>
+              <td><%= link_to 'Comment', new_comment_path(incident), class: "links" %></td>
+            <%end%>
           <%end%>
         </tr>
       <% end %>
@@ -35,12 +48,11 @@
   </table>
 </div>
 
-
-  <%if user_current.showall%>
-    <%= button_to "only show my incidents", {action: "update_user", id: user_current.id, class: "btn btn-primary"}, {method: :put} %>
-  <%else%>
-    <%= button_to "show all", {action: "update_user", id: user_current.id, class: "btn btn-primary"}, {method: :put} %>
-  <%end%>
+<%if user_current.showall%>
+  <%= button_to "only show my incidents", {action: "update_user", id: user_current.id, class: "btn btn-primary"}, {method: :put} %>
+<%else%>
+  <%= button_to "show all", {action: "update_user", id: user_current.id, class: "btn btn-primary"}, {method: :put} %>
+<%end%>
 
 <br>
 <%= link_to 'New Incident', new_incident_path, class: "links" %>

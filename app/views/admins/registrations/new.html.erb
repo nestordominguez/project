@@ -2,26 +2,48 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-  
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+  <%= f.fields_for(setup_company) do |ff| %>
+  <legend>Company:</legend>
+    <fieldset class="fieldset">
+      <div class="field col-md-4">
+        <%= ff.label :company_name %>
+        <%= ff.text_field :company_name %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+      <div class="field col-md-4">
+        <%= ff.label :address %>
+        <%= ff.text_field :address %>
+      </div>
 
-  <div class="actions">
+      <div class="field col-md-4">
+        <%= ff.label :address_num %>
+        <%= ff.number_field :address_num %>
+      </div>
+    </fieldset>
+  <% end %><br>
+  <legend>Admin:</legend>
+  <fieldset class="fieldset">
+    <div class="field col-md-4">
+      <%= f.label :email %>
+      <%= f.email_field :email%>
+    </div>
+
+    <div class="field col-md-4">
+      <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: "off" %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+    </div>
+
+    <div class="field col-md-4">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+  </fieldset>
+
+  <div class="actions col-md-offset-8">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>

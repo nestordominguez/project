@@ -4,6 +4,8 @@ class Admin < ActiveRecord::Base
   belongs_to :company
   has_many :incidents
   has_many :comments
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :validatable,
          :recoverable, :rememberable, :trackable
+
+  accepts_nested_attributes_for :company
 end
